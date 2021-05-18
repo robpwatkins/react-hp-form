@@ -24,7 +24,7 @@ function App() {
             {
               name: "email",
               value: "test@tester.com"
-            }
+            },
           ]
         })
       });
