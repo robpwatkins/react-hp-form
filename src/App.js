@@ -1,8 +1,19 @@
 import React, { useState } from 'react';
 import './App.css';
+import useForm from './hooks/useForm';
 
 function App() {
-  const [formData, setFormData] = useState({});
+  const submitForm = () => {
+    alert(`Form submitted! 
+      State: ${inputs.state}
+      Office Name: ${inputs.office_name}
+      Office Address: ${inputs.office_address}
+      Office Email: ${inputs.office_email}
+      Office Phone: ${inputs.office_phone}
+      Best Contact: ${inputs.best_contact}
+      Date: ${inputs.date}`)
+  }
+  const { inputs, handleInputChange, /* handleSubmit */ } = useForm(/* submitForm */);
 
   const formGuid = process.env.REACT_APP_FORM_GUID;
   const portalId = process.env.REACT_APP_PORTAL_ID;
@@ -23,11 +34,11 @@ function App() {
           fields: [
             {
               name: "email",
-              value: "test1@tester.com"
+              value: "test4@tester.com"
             },
             {
-              name: "firstname",
-              value: "Tester1"
+              name: "office_name",
+              value: "Test Office 1"
             }
           ]
         })
@@ -55,9 +66,9 @@ function App() {
           <option value="Dental Front Office">Dental Front Office</option>
         </select>
         <br />
-        <label htmlFor="state" required>
+        <label htmlFor="state">
           State:
-          <input type="text" name="state" /* onChange={event => handleChange(event)} */ />
+          <input type="text" name="state" value={inputs.state} onChange={handleInputChange} required />
         </label>
         <br />
         <label>School to Hire From:</label>
@@ -68,29 +79,29 @@ function App() {
           <option value="School 3">School 3</option>
         </select>
         <br />
-        <label htmlFor="office name" required>
+        <label htmlFor="office name">
           Office Name:
-          <input type="text" name="office name" /* onChange={event => handleChange(event)} */ />
+          <input type="text" name="office_name" value={inputs.office_name} onChange={handleInputChange} required />
         </label>
         <br />
-        <label htmlFor="office address" required>
+        <label htmlFor="office address">
           Office Address:
-          <input type="text" name="office address" /* onChange={event => handleChange(event)} */ />
+          <input type="text" name="office_address" value={inputs.office_address} onChange={handleInputChange} required />
         </label>
         <br />
-        <label htmlFor="office email" required>
+        <label htmlFor="office email">
           Office Email:
-          <input type="text" name="office email" /* onChange={event => handleChange(event)} */ />
+          <input type="text" name="office_email" value={inputs.office_email} onChange={handleInputChange} required />
         </label>
         <br />
-        <label htmlFor="office phone" required>
+        <label htmlFor="office phone">
           Office Phone:
-          <input type="number" name="office phone" /* onChange={event => handleChange(event)} */ />
+          <input type="number" name="office_phone" value={inputs.office_phone} onChange={handleInputChange} required />
         </label>
         <br />
-        <label htmlFor="best contact" required>
+        <label htmlFor="best contact">
           Best Contact in the Office:
-          <input type="text" name="best contact" /* onChange={event => handleChange(event)} */ />
+          <input type="text" name="best_contact" value={inputs.best_contact} onChange={handleInputChange} required />
         </label>
         <br />
         <label>How Should Students Apply?</label>
@@ -101,9 +112,9 @@ function App() {
           <option value="call">Call</option>
         </select>
         <br />
-        <label htmlFor="date to fill" required>
+        <label htmlFor="date to fill">
           When are you looking to fill the position?
-          <input type="date" name="date" /* onChange={event => handleChange(event)} */ />
+          <input type="date" name="date" value={inputs.date} onChange={handleInputChange} required />
         </label>
         <br />
         <button>submit!</button>
