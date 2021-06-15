@@ -11,48 +11,50 @@ function App() {
       Office Email: ${inputs.office_email}
       Office Phone: ${inputs.office_phone}
       Best Contact: ${inputs.best_contact}
-      Date: ${inputs.date}`)
+      Date: ${inputs.date}`);
+      console.log(inputs);
   }
-  const { inputs, handleInputChange, /* handleSubmit */ } = useForm(/* submitForm */);
+  const { inputs, handleInputChange, /* handleSubmit */ } = useForm(submitForm);
 
-  const formGuid = process.env.REACT_APP_FORM_GUID;
-  const portalId = process.env.REACT_APP_PORTAL_ID;
+  // const formGuid = process.env.REACT_APP_FORM_GUID;
+  // const portalId = process.env.REACT_APP_PORTAL_ID;
 
   // const handleChange = event => {
   //   setInput(event.target.value);
   // }
 
-  const postToHubSpot = async () => {
-    const url = `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formGuid}`;
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          fields: [
-            {
-              name: "email",
-              value: "test4@tester.com"
-            },
-            {
-              name: "office_name",
-              value: "Test Office 1"
-            }
-          ]
-        })
-      });
-      const json = await response.json();
-      console.log(json);
-    } catch (err) {
-      console.error(err);
-    }
-  }
+  // const postToHubSpot = async () => {
+  //   const url = `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formGuid}`;
+  //   try {
+  //     const response = await fetch(url, {
+  //       method: 'POST',
+  //       headers: {
+  //         "Content-Type": "application/json"
+  //       },
+  //       body: JSON.stringify({
+  //         fields: [
+  //           {
+  //             name: "email",
+  //             value: "test4@tester.com"
+  //           },
+  //           {
+  //             name: "office_name",
+  //             value: "Test Office 1"
+  //           }
+  //         ]
+  //       })
+  //     });
+  //     const json = await response.json();
+  //     console.log(json);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // }
 
   const handleSubmit = event => {
     event.preventDefault();
-    postToHubSpot();
+    // postToHubSpot();
+    submitForm();
   }
 
   return (
